@@ -32,12 +32,6 @@ simplify adoption of DNS over HTTPS over Tor.
   individual user, and I present several months' worth of both numbers
   and "24x7 lived experience" to back up my perspective.
 
-## Where's the Beef?
-
-This document constitutes the "why?" part of the discussion; the
-["how?" parts will be covered in a separate document](TECH.md)
-which is a work in progress.
-
 ## The Experiment
 
 For more than four months my home - excluding a small
@@ -82,7 +76,7 @@ The headline stats are:
 
 ![196 lowest-latency DoHoT fetches from 3 DoH providers, June 2020](img/june-2020.png)
 
-* pool of 3 `DoH` providers for initial experiment: A, B, and C
+* a pool of 3 `DoH` providers for the initial experiment: A, B, and C
 * 196 data points from May 31st to July 2nd
 * p50 / median request lowest-latency: 193ms
 * p90 request lowest-latency: 372ms
@@ -92,11 +86,11 @@ The headline stats are:
 ![sorted distribution of DoHoT fetches from 3 DoH providers, June 2020](img/lowest-latency.png)
 
 Manual spot-testing from my extranet suggests that resolution of
-".com" names that are not in my ISP's upstream resolver cache will
-take 140..170ms to be resolved via `Do53`, and that resolution of a
+`.com` names that are not in my ISP's upstream resolver cache will
+take 140 to 170ms to be resolved via `Do53`, and that resolution of a
 domain in `.cn` can take 670ms.  These numbers are ad-hoc, but I find
 it reassuring that the best-case times for `DoHoT` are in the same
-ballpark as survivable worst-case times for `Do53`.
+ballpark as survivable normal/**worst-case times for `Do53`.
 
 ## Why DoHoT?
 
@@ -127,7 +121,7 @@ income, or their quiet "obligations" to nation-state security
 services.  as if people being enabled with privacy would somehow be
 "their fault".
 
-### Critics of DoH
+### DoH as an Opportunity
 
 Some critics ignore the "first mile" transport-security benefits of
 `DoH` and instead [frame the concerns](https://www.zdnet.com/article/dns-over-https-causes-more-problems-than-it-solves-experts-say/)
@@ -190,22 +184,22 @@ consideration; generally there are three aspects to this concern:
   * Mozilla has sought to address this concern with their
     [Trusted Recursive Resolver](https://wiki.mozilla.org/Trusted_Recursive_Resolver) program;
     but simplistically it seems logical that the proper solution to "too
-    few" `DoH` providers is to encourage more of them, not fewer.
-3. "A small number of 'Big Data Companies' will get all the tracking information, instead of us!"
-  * Aha! That is an actionable concern, and one where we can make an improvement well beyond `DoH` let alone `Do53`.
+    few" `DoH` providers is to encourage *more* of them, not *fewer*.
+3. "A small number of *Big Data Companies* will get all the tracking information, instead of us!"
+  * This is an actionable concern, and one where we can make an improvement well beyond `DoH` let alone `Do53`.
 
 The fear that "Big Data Companies" will mine `DoH` request data for
 profit is valid and is one which the likes of (e.g.)  Mozilla are
 already working on
 ([see point 2, here](https://blog.mozilla.org/netpolicy/2020/02/25/the-facts-mozillas-dns-over-https-doh/)) -
-but it's one where the internet is also already equipped with a solution:
+but it's one where the internet is also already equipped with a well-tested solution:
 [Tor](https://www.torproject.org).
 
-## Why Tor?
+## Why Tor, and why use DoH over Tor?
 
 One of the goals of the Tor project is to provide anonymity of clients
 from servers; there are *other* benefits to Tor and Tor "Onion
-Networking", but this is the most popular rationale for use.
+Networking", but this is the most popular rationale for Tor's use.
 
 It's also a rationale which meshes insanely well, with `DoH`.
 
@@ -224,22 +218,21 @@ Therefore:
 
 This architecture follows Tor's
 ["anonymity loves company"](https://www.freehaven.net/doc/wupss04/usability.pdf)
-model for privacy, and offers far better privacy, integrity,
-unblockability and untrackability than anything offered by `Do53`,
+model for privacy, and **offers far better privacy, integrity,
+unblockability and untrackability than anything** offered by `Do53`,
 `DoT` (DNS over TLS on port 853), raw `DoH` or indeed any other DNS
 lookup-service.
 
-And it already exists, is free, and my data and experience is that it
-works well for home users.
+And the technology already exists, is free, and my data and experience is that it
+works really well for home users, perhaps more.
 
 ## How do I build a DoHoT server?
 
-See [here; this is a work-in-progress](TECH.md). This project is
-evolving and I will be updating it sporadically.
+[See here](TECH.md); this project is project evolving and I will be updating it.
 
-## Surely there must have been some problems?
+## Surely there have been some issues?
 
-Well, there are a few patterns or weird experiences that I have noticed:
+There are a few patterns or weird experiences that I have noted:
 
 ### The Ubiquity WiFi dashboard will complain about "latency", indefinitely
 
@@ -249,45 +242,46 @@ My WiFi router dashboard perpetually complains about "High DNS
 Latency", which only goes to show that expectations of "low latency"
 in modern DNS are lower than what humans are actually okay with.
 
-### Chromecast honours DHCP's DoHoT DNS server, but tries to use 8.8.8.8 as well
+### Chromecast honours DHCP's DoHoT DNS server, but also tries to use 8.8.8.8
 
 Approximately every 20 seconds my Chromecast attempts to send a
 request to 8.8.8.8, which my firewall drops and logs. I find this
 interesting, but it's not really a DoHoT problem so much as a matter
 of my choice to block any non-DoHoT DNS requests.
 
-Everything - including Chromecast upgrades - still works, so I am
+The Chromecase - including upgrades - still works fine, so I am
 ignoring this matter.
 
-### Human Error is fairly common
+### "Human Error" is surprisingly common
 
 Every so often I visit somewhere that causes me to temporarily
 hardcode my laptop or phone DNS server to 1.1.1.1 or 8.8.8.8; then I
 come home and the device stops working until I remember to reset the
-DNS to be the automatic DHCP default.  Again I consider this to be due
-to my choice to block any non-DoHoT DNS requests, but it's probably
-also good discipline from a privacy perspective.
+DNS to be the automatic DHCP default.  
+
+Again I consider this to be due to my choice to block any non-DoHoT DNS requests, but it's probably
+also good discipline from a privacy perspective.  I actually used to believe that my privacy self-discipline was better than this, but I was wrong.
 
 This situation is interesting to compare to criticism from DoH
-*critics* who argue that it is they - your service provider, your
+critics who argue that it is they - your service provider, your
 ISP - rather than you, who should be limiting access to alternative
 sources of DNS resolution.
 
 ### Absolutely nothing at home is using Port 853
 
-`DoT` / DNS-over-TLS is touted by DNS experts as the "proper" solution
+`DoT` / DNS-over-TLS on port 853 is touted by DNS experts as the "proper" solution
 for DNS privacy and security, but I have not yet seen any devices or
-applications using it.
+applications actually using it.
 
-## Footnotes and Possible FAQs
+## Footnotes and FAQs
 
-## Why are you only publishing 4 weeks' worth of graphs?
+### Why are you only publishing 4 weeks' worth of graphs?
 
 I set this up in early February, and then COVID-19 happened, and I
 basically forgot about it; however my server *does* retain slightly
 more than 4 weeks worth of logs.  I will try to do better in future.
 
-## Why are you not annotating the DoH providers?
+### Why are you not annotating the DoH providers?
 
 To do so would not seem relevant; after some advanced technical
 experimentation with DoH and
