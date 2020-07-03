@@ -154,16 +154,8 @@ sdns://AgcAAAAAAAAAAAA-ZG5zNHRvcnBubGZzMmlmdXoyczJ5ZjNmYzdyZG1zYmhtNnJ3NzVldWozN
 pre-existing "stamps" (and databases thereof) can be imported and used
 in the `dnscrypt-proxy` configuration file without much hassle.
 
-To install the configuration:
-
-```
-TODO
-TODO
-TODO
-TODO
-TODO
-TODO
-```
+For the actual configuration file, see
+[dnscrypt-proxy.toml](dnscrypt-proxy.toml) and amend if/as necessary.
 
 ## set the server to use itself for resolution
 
