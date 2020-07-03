@@ -18,8 +18,8 @@
 # STAMP GENERATION:
 # source:  https://github.com/chrisss404/python-dnsstamps
 # install: python3 -m pip install --user dnsstamps
-# example: stampgen=/Users/alecm/Library/Python/3.7/bin/dnsstamp.py
-stampgen=/path/to/dnsstamp.py # FIX THIS TO MATCH INSTALL
+# example: stamp_exe=/Users/alecm/Library/Python/3.7/bin/dnsstamp.py
+stamp_exe=/path/to/dnsstamp.py # FIX THIS TO MATCH INSTALL
 
 # dnsstamp.py has no apparent documentation, seems to be:
 # -s: DNSSEC switch
@@ -33,15 +33,15 @@ stampgen=/path/to/dnsstamp.py # FIX THIS TO MATCH INSTALL
 cf_onion=dns4torpnlfs2ifuz2s2yf3fc7rdmsbhm6rw75euj35pac6ap25zgqad.onion
 
 # temp file to hold all the output/junk
-tf=/tmp/stampgen_$$
+tf=/tmp/stamp$$
 
 # do it
 while read name args ; do
     test "x$name" = "x" && continue
     test "x$name" = "x#" && continue
     echo :::: $name::::
-    echo $stampgen $args
-    $stampgen $args >$tf || exit 1
+    echo $stamp_exe $args
+    $stamp_exe $args >$tf || exit 1
     grep -v '^$' $tf
     sdns=`grep sdns:// <$tf`
     echo ""
