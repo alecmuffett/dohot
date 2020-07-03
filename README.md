@@ -196,8 +196,8 @@ consideration; generally there are three aspects to this concern:
 The fear that "Big Data Companies" will mine `DoH` request data for
 profit is valid and is one which the likes of (e.g.)  Mozilla are
 already working on
-([see point 2, here](https://blog.mozilla.org/netpolicy/2020/02/25/the-facts-mozillas-dns-over-https-doh/))
-- but it's one where the internet is also already equipped with a solution:
+([see point 2, here](https://blog.mozilla.org/netpolicy/2020/02/25/the-facts-mozillas-dns-over-https-doh/)) -
+but it's one where the internet is also already equipped with a solution:
 [Tor](https://www.torproject.org).
 
 ## Why Tor?
@@ -230,3 +230,7 @@ lookup-service.
 
 And it already exists, is free, and my data and experience is that it
 works well for home users.
+
+## How do I build a DoHoT server?
+
+See [here; this is a work-in-progress](TECH.md).
