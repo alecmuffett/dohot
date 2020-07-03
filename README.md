@@ -63,6 +63,7 @@ except on this occasion:
 * configured `DoH` to use only the SOCKS5 interface provided by a local `tor` daemon
 * advertised that resolver using DHCP on my home network, and finally...
 * set my firewall to block all network egress to ports 53 & 853, TCP & UDP
+  * except for permitting the resolver itself to have just enough port 53 access to bootstrap
 
 ## Experiment Results Summary
 
@@ -234,3 +235,45 @@ works well for home users.
 ## How do I build a DoHoT server?
 
 See [here; this is a work-in-progress](TECH.md).
+
+## Surely there must have been some problems?
+
+Well, there are a few experiences that I have noticed:
+
+### The Ubiquity WiFi dashboard will complain about "latency"
+
+![clip of dashboard](img/unifi-complaints.png)
+
+My WiFi router dashboard perpetually complains about "High DNS
+Latency", which only goes to show that expectations of "low latency"
+in modern DNS are lower than what humans are actually okay with.
+
+### Chromecast honours DHCP's DoHoT DNS server, but tries to use 8.8.8.8 as well
+
+Approximately every 20 seconds my Chromecast attempts to send a
+request to 8.8.8.8, which my firewall drops and logs. I find this
+interesting, but it's not really a DoHoT problem so much as a matter
+of my choice to block any non-DoHoT DNS requests.
+
+Everything - including Chromecast upgrades - still works, so I am
+ignoring this matter.
+
+### Human Error is fairly common
+
+Every so often I visit somewhere that causes me to temporarily
+hardcode my laptop or phone DNS server to 1.1.1.1 or 8.8.8.8; then I
+come home and the device stops working until I remember to reset the
+DNS to be the automatic DHCP default.  Again I consider this to be due
+to my choice to block any non-DoHoT DNS requests, but it's probably
+also good discipline from a privacy perspective.
+
+This situation is interesting to compare to criticism from DoH
+*critics* who argue that it is they - your service provider, your
+ISP - rather than you, who should be limiting access to alternative
+sources of DNS resolution.
+
+### Absolutely nothing at home is using Port 853
+
+`DoT` / DNS-over-TLS is touted by DNS experts as the "proper" solution
+for DNS privacy and security, but I have not yet seen any devices or
+applications using it.
