@@ -34,8 +34,9 @@ simplify adoption of DNS over HTTPS over Tor.
 
 ## Where's the Beef?
 
-TODO: This is the "why" section of the document; the "how?" section
-will be linked to, once I have written it.
+This document constitutes the "why?" part of the discussion; the
+["how?" parts will be covered in a separate document](TECH.md)
+which is a work in progress.
 
 ## The Experiment
 
@@ -125,7 +126,7 @@ income, or their quiet "obligations" to nation-state security
 services.  as if people being enabled with privacy would somehow be
 "their fault".
 
-### General criticisms of DoH / DNS-over-HTTPS
+### Critics of DoH
 
 Some critics ignore the "first mile" transport-security benefits of
 `DoH` and instead [frame the concerns](https://www.zdnet.com/article/dns-over-https-causes-more-problems-than-it-solves-experts-say/)
@@ -198,3 +199,34 @@ already working on
 ([see point 2, here](https://blog.mozilla.org/netpolicy/2020/02/25/the-facts-mozillas-dns-over-https-doh/))
 - but it's one where the internet is also already equipped with a solution:
 [Tor](https://www.torproject.org).
+
+## Why Tor?
+
+One of the goals of the Tor project is to provide anonymity of clients
+from servers; there are *other* benefits to Tor and Tor "Onion
+Networking", but this is the most popular rationale for use.
+
+It's also a rationale which meshes insanely well, with `DoH`.
+
+Tor does not support UDP and therefore cannot provide anonymity for
+`Do53` traffic, but because `DoH` is normal HTTPS it can be carried
+efficiently over Tor connections.
+
+Therefore:
+
+* if the individual provides and controls a local `Do53` resolver,
+  not least for normal, "legacy" use - being offered by DHCP, etc.
+* and that resolver is configured to resolve upstream, using `DoH`
+* and that resolver is configured to strip linkable identifiers from `DoH` requests
+* and that resolver connects to various major `DoH` providers over Tor
+* then the provider will not know who is making the request, nor from where it came, nor will be able to "link" requests
+
+This architecture follows Tor's
+["anonymity loves company"](https://www.freehaven.net/doc/wupss04/usability.pdf)
+model for privacy, and offers far better privacy, integrity,
+unblockability and untrackability than anything offered by `Do53`,
+`DoT` (DNS over TLS on port 853), raw `DoH` or indeed any other DNS
+lookup-service.
+
+And it already exists, is free, and my data and experience is that it
+works well for home users.
