@@ -133,7 +133,7 @@ Some critics ignore the "first mile" transport-security benefits of
 by complaining about problems that `DoH` doesn't actually address; for
 instance:
 
-> [source](https://www.zdnet.com/article/dns-over-https-causes-more-problems-than-it-solves-experts-say/):
+[ZDnet article](https://www.zdnet.com/article/dns-over-https-causes-more-problems-than-it-solves-experts-say/):
 > The response to DoH's anointment as a major privacy-preserving
 > solution has been downright acid, in some cases. Critics have taken
 > a jab at the protocol on different plains, which we'll try to
