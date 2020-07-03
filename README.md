@@ -249,7 +249,7 @@ request to 8.8.8.8, which my firewall drops and logs. I find this
 interesting, but it's not really a DoHoT problem so much as a matter
 of my choice to block any non-DoHoT DNS requests.
 
-The Chromecase - including upgrades - still works fine, so I am
+The Chromecast - including upgrades - still works fine, so I am
 ignoring this matter.
 
 ### "Human Error" is surprisingly common
