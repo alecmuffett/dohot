@@ -124,10 +124,11 @@ chown -R root: ./
 ```
 
 If you are building on Ubuntu or other platforms, the repositories
-(again) seem to be shipping an older version - 2.0.31 on Focal, as of
-July 2020; I do not know whether this is recent enough to support
-DoHoT, but I can confirm that version 2.0.39 works.  Please let me
-know your experiences by logging an `issue` on Github.
+(again) seem to be shipping an older version - `2.0.31` on Focal, as
+of July 2020; I do not know whether this is recent enough to support
+DoHoT, but I can confirm that version `2.0.39` works.
+
+Please let me know your experiences by logging an `issue` on Github.
 
 ## configure dnscrypt-proxy to provide DNS over HTTPS over Tor
 
