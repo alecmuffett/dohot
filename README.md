@@ -300,4 +300,5 @@ why risk being seen to pick favourites?
 Looking at the graph above, I noticed that "cliff edge" too. I'm not
 sure, but after checking with some members of the Tor project, some
 newer, faster Tor infrastructure may have become more prevalent around
-that time.
+that time. Another member of the Tor community reminded me that it may
+be that my Tor instance changed "guard" to a faster one.
