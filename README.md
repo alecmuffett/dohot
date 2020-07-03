@@ -195,7 +195,7 @@ already working on
 but it's one where the internet is also already equipped with a well-tested solution:
 [Tor](https://www.torproject.org).
 
-## Why Tor, and why use DoH over Tor?
+### Why Tor, and why use DoH over Tor?
 
 One of the goals of the Tor project is to provide anonymity of clients
 from servers; there are *other* benefits to Tor and Tor "Onion
