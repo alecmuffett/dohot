@@ -4,7 +4,9 @@
 
 I set this up in early February, and then COVID-19 happened, and I
 basically forgot about it; however my server *does* retain slightly
-more than 4 weeks worth of logs...
+more than 4 weeks worth of logs.
+
+I will try to do better in future.
 
 ## Why are you not annotating the DoH providers?
 
