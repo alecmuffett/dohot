@@ -97,7 +97,7 @@ domain in `.cn` can take 670ms.  These numbers are ad-hoc, but I find
 it reassuring that the best-case times for `DoHoT` are in the same
 ballpark as survivable worst-case times for `Do53`.
 
-## Why #DoHoT?
+## Why DoHoT?
 
 The DNS protocol is more than 40 years old, was never designed for
 privacy, and is broadly instrumented - i.e.: logged, sold, spied-upon,
