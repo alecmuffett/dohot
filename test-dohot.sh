@@ -25,12 +25,13 @@ while read src url curl_opts; do
     echo ""
     echo ""
 done <<EOF
-cf        https://cloudflare-dns.com/dns-query?name=$TARGET
-cf-ip     https://1.1.1.1/dns-query?name=$TARGET
-cf-onion  https://$CFONION/dns-query?name=$TARGET
-google    https://dns.google/resolve?name=$TARGET
-quad9     https://dns.quad9.net:5053/dns-query?name=$TARGET
-quad9-ip  https://9.9.9.9:5053/dns-query?name=$TARGET
+cf            https://cloudflare-dns.com/dns-query?name=$TARGET
+cf-ip1001     https://1.0.0.1/dns-query?name=$TARGET
+cf-ip1111     https://1.1.1.1/dns-query?name=$TARGET
+cf-onion      https://$CFONION/dns-query?name=$TARGET
+google        https://dns.google/resolve?name=$TARGET
+quad9         https://dns.quad9.net:5053/dns-query?name=$TARGET
+quad9-ip9999  https://9.9.9.9:5053/dns-query?name=$TARGET
 EOF
 
 exit 0
