@@ -1,10 +1,10 @@
-# #DoHoT: how and why to make practical use of DNS over HTTPS (#DoH) over #Tor
+# DoHoT: how & why to make practical use of DNS over HTTPS over Tor
 
 This is the first document for a new project called `DoHoT` DNS, which I
 hope will grow to help people recoup some privacy in places where they
 have previously not considered it lacking.
 
-# TL;DR
+## TL;DR
 
 I set up a DNS stub resolver using *DNS over HTTPS over Tor* at home.
 For four months - during the UK COVID-19 lockdown / shelter-in-place -
@@ -12,12 +12,12 @@ my partner and I have lived with it exclusively.  It has worked so
 well that we haven't noticed any practical change in our internet
 service experience.
 
-# Goals
+## Goals
 
 What I seek with this project is to explain, to encourage, and to
 simplify adoption of DNS over HTTPS over Tor.
 
-# Disclaimers
+## Disclaimers
 
 * Likely none of this is new.
 * I probably describe nothing that is novel.
@@ -32,12 +32,12 @@ simplify adoption of DNS over HTTPS over Tor.
   individual user, and I present several months' worth of both numbers
   and "24x7 lived experience" to back up my perspective.
 
-# Where's the Beef?
+## Where's the Beef?
 
 TODO: This is the "why" section of the document; the "how?" section
 will be linked to, once I have written it.
 
-# The Experiment
+## The Experiment
 
 For more than four months my home - excluding a small
 [extranet](https://en.wikipedia.org/wiki/Extranet) - has gone utterly
@@ -63,7 +63,7 @@ except on this occasion:
 * advertised that resolver using DHCP on my home network, and finally...
 * set my firewall to block all network egress to ports 53 & 853, TCP & UDP
 
-# Experiment Results Summary
+## Experiment Results Summary
 
 Almost all of the documentation that I have read - including some
 amongst the `dnscrypt-proxy` source code - has told me that `DoHoT`
@@ -92,7 +92,7 @@ domain in `.cn` can take 670ms.  These numbers are ad-hoc, but I find
 it reassuring that the best-case times for `DoHoT` are in the same
 ballpark as survivable worst-case times for `Do53`.
 
-# Why #DoHoT?
+## Why #DoHoT?
 
 The DNS protocol is more than 40 years old, was never designed for
 privacy, and is broadly instrumented - i.e.: logged, sold, spied-upon,
@@ -121,7 +121,7 @@ income, or their quiet "obligations" to nation-state security
 services.  as if people being enabled with privacy would somehow be
 "their fault".
 
-## General criticisms of DoH / DNS-over-HTTPS
+### General criticisms of DoH / DNS-over-HTTPS
 
 Some critics ignore the "first mile" transport-security benefits of
 `DoH` and instead [frame the concerns](https://www.zdnet.com/article/dns-over-https-causes-more-problems-than-it-solves-experts-say/)
@@ -144,17 +144,17 @@ instance:
 The cited criticisms are not reasonable because the concerns that are
 raised are generally not for `DoH` to fix:
 
-### "DoH doesn't actually prevent ISPs user tracking"
+#### "DoH doesn't actually prevent ISPs user tracking"
 
 `DoH` was never meant as a wholesale "cure" for ISP user-tracking;
 it's meant to reduce DNS observation, tampering, and interference.
 
-### "DoH creates havoc in the enterprise sector"
+#### "DoH creates havoc in the enterprise sector"
 
 I have worked in the "enterprise sector" since 1992; I am sorry to be
 glib but this equally glib claim is nonsense.
 
-### "DoH weakens cyber-security"
+#### "DoH weakens cyber-security"
 
 Again this is a vague concern - DoH weakens what aspects of security,
 how, for whom, and to what compensating benefits, to whom? - but also
@@ -162,17 +162,17 @@ it should be noted that the prime weaknesses in cybersecurity are
 "users" and "software" yet we are somehow content to have more of both
 of those?
 
-### "DoH helps criminals"
+#### "DoH helps criminals"
 
 Helps criminals? So does "the internet" in general - it would not be
 able to have cybercrime without computers.
 
-### "DoH shouldn't be recommended to dissidents"
+#### "DoH shouldn't be recommended to dissidents"
 
 So far as I am aware, nobody is recommending `DoH` for "dissidents";
 `DoH` is being recommended more broadly to *people who want more privacy*.
 
-### "DoH centralizes DNS traffic at a few DoH resolvers"
+#### "DoH centralizes DNS traffic at a few DoH resolvers"
 
 Aha! This latter concern has some substance, and it is worth
 consideration; generally there are three aspects to this concern:
