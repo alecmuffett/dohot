@@ -234,13 +234,14 @@ works well for home users.
 
 ## How do I build a DoHoT server?
 
-See [here; this is a work-in-progress](TECH.md).
+See [here; this is a work-in-progress](TECH.md). This project is
+evolving and I will be updating it sporadically.
 
 ## Surely there must have been some problems?
 
-Well, there are a few experiences that I have noticed:
+Well, there are a few patterns or weird experiences that I have noticed:
 
-### The Ubiquity WiFi dashboard will complain about "latency"
+### The Ubiquity WiFi dashboard will complain about "latency", indefinitely
 
 ![clip of dashboard](img/unifi-complaints.png)
 
@@ -277,3 +278,25 @@ sources of DNS resolution.
 `DoT` / DNS-over-TLS is touted by DNS experts as the "proper" solution
 for DNS privacy and security, but I have not yet seen any devices or
 applications using it.
+
+## Footnotes and Possible FAQs
+
+## Why are you only publishing 4 weeks' worth of graphs?
+
+I set this up in early February, and then COVID-19 happened, and I
+basically forgot about it; however my server *does* retain slightly
+more than 4 weeks worth of logs.  I will try to do better in future.
+
+## Why are you not annotating the DoH providers?
+
+To do so would not seem relevant; after some advanced technical
+experimentation with DoH and
+[EOTK](https://github.com/alecmuffett/eotk) I simply picked three
+ordinary DoH providers and set them up as resolvers in
+DNSCrypt-Proxy.
+
+Since the whole point of using Tor is to divorce the server from the
+client, I believe that - especially given the automatic load-balancing
+of DNSCrypt-Proxy - so long as the results appear consistent it
+doesn't really matter who won the race to give the first response; so
+why risk being seen to pick favourites?
