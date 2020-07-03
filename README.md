@@ -295,7 +295,7 @@ of DNSCrypt-Proxy - so long as the results appear consistent it
 doesn't really matter who won the race to give the first response; so
 why risk being seen to pick favourites?
 
-### Did the latency drop significantly around July 6th?
+### Did the latency drop significantly around June 6th?
 
 Looking at the graph above, I noticed that "cliff edge" too. I'm not
 sure, but after checking with some members of the Tor project, some
