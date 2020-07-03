@@ -257,7 +257,7 @@ ignoring this matter.
 Every so often I visit somewhere that causes me to temporarily
 hardcode my laptop or phone DNS server to 1.1.1.1 or 8.8.8.8; then I
 come home and the device stops working until I remember to reset the
-DNS to be the automatic DHCP default.  
+DNS to be the automatic DHCP default.
 
 Again I consider this to be due to my choice to block any non-DoHoT DNS requests, but it's probably
 also good discipline from a privacy perspective.  I actually used to believe that my privacy self-discipline was better than this, but I was wrong.
@@ -294,3 +294,10 @@ client, I believe that - especially given the automatic load-balancing
 of DNSCrypt-Proxy - so long as the results appear consistent it
 doesn't really matter who won the race to give the first response; so
 why risk being seen to pick favourites?
+
+### Did the latency drop significantly around July 6th?
+
+Looking at the graph above, I noticed that "cliff edge" too. I'm not
+sure, but after checking with some members of the Tor project, some
+newer, faster Tor infrastructure may have become more prevalent around
+that time.
