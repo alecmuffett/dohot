@@ -15,11 +15,14 @@ test -s $tags ||
     curl $url | awk '$1=="##"{tag=$2} /^sdns/{print tag, $1}' >$tags ||
     exit 1
 
+echo "#" `date`
+echo "# these stamps appear to be suitable for DoHoT"
+echo ""
+
 while read tag stamp ; do
     $stamp_exe parse $stamp >$tf
     grep '^Hostname:' $tf >/dev/null || continue
     grep '^DNSSEC: yes' $tf >/dev/null || continue
     grep '^No filter: yes' $tf >/dev/null || continue
-    cp $tf $tag.stamp.txt
-    echo $tag # is okay to use
+    echo "'$tag'," # is okay to use
 done <$tags
