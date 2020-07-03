@@ -1,4 +1,4 @@
-# DoHoT: how & why to make practical use of DNS over HTTPS over Tor
+# DoHoT: making practical use of DNS over HTTPS over Tor
 
 This is the first document for a new project called `DoHoT` DNS, which I
 hope will grow to help people recoup some privacy in places where they
@@ -58,7 +58,7 @@ have previously operated a [Pi-Hole Ad-Blocker](https://pi-hole.net) -
 except on this occasion:
 
 * I configured a `dnscrypt-proxy` resolver listening to port 53
-* set the resolver to exclusively use DNS-over-HTTPS (`DoH`) for upstream resolution
+* set the resolver to exclusively use `DoH` for upstream resolution
 * configured `DoH` to use only the SOCKS5 interface provided by a local `tor` daemon
 * advertised that resolver using DHCP on my home network, and finally...
 * set my firewall to block all network egress to ports 53 & 853, TCP & UDP
@@ -76,7 +76,9 @@ of upstream request latency amongst the loadbalanced pool of resolvers
 that it is using, and I shall present the statistics for the entirety
 of June 2020, plus a little bit of May and July.
 
-Graphs will follow, but the headline stats are:
+The headline stats are:
+
+![196 lowest-latency DoHoT fetches from 3 DoH providers, June 2020](img/june-2020.png)
 
 * pool of 3 `DoH` providers for initial experiment: A, B, and C
 * 196 data points from May 31st to July 2nd
@@ -84,6 +86,8 @@ Graphs will follow, but the headline stats are:
 * p90 request lowest-latency: 372ms
 * p95 request lowest-latency: 425ms
 * max request lowest-latency: 815ms
+
+![sorted distribution of DoHoT fetches from 3 DoH providers, June 2020](img/lowest-latency.png)
 
 Manual spot-testing from my extranet suggests that resolution of
 ".com" names that are not in my ISP's upstream resolver cache will
@@ -114,8 +118,8 @@ the protocol itself has been represented as rather
 but a careful reading of some of the more
 [critical](https://www.eset.com/blog/business/the-battle-for-dns-and-data/)
 [coverage](https://www.theregister.co.uk/2018/10/23/paul_vixie_slaps_doh_as_dns_privacy_feature_becomes_a_standard/)
-suggests that the vitriol tends to come from people or organisations
-in categories 2 through 5 above, understandably concerned that
+suggests that the criticisms tend to come from people or organisations
+in categories 2 through 5 above, perhaps concerned that
 increased DNS privacy may impact their business models, revenue,
 income, or their quiet "obligations" to nation-state security
 services.  as if people being enabled with privacy would somehow be
