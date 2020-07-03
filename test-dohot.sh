@@ -6,7 +6,8 @@
 # v1.0 - alec.muffett@gmail.com 2018-06-26
 
 # You need to have TorBrowser running locally to provide a SOCKS5
-# relay to Tor on port 9150 (see below) for the Onion lookup to work.
+# relay to Tor on port 9150 (see below) for the Onion lookup to work;
+# or you can amend this script to point at another tor/socks relay.
 
 TARGET="www.openrightsgroup.org"
 TOR_PROXY="127.0.0.1:9150" # amend this, if your tor proxy is elsewhere
