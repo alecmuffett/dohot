@@ -8,8 +8,11 @@ listen_addresses = [ '0.0.0.0:53' ]
 # see the URL below for details, add the names here...
 # 1/ https://dnscrypt.info/public-servers
 # 2/ https://download.dnscrypt.info/resolvers-list/v2/public-resolvers.md
-server_names = ['a-and-a', 'cloudflare', 'cloudflare-onion', 'dnslify-doh', 'google', 'iij', 'nextdns', 't53'] 
+server_names = ['a-and-a', 'cloudflare', 'cloudflare-onion', 'dnslify-doh', 'google', 'iij', 'nextdns', 'powerdns-doh', 't53'] 
 disabled_server_names = []
+
+# poll/log every hour
+cert_refresh_delay = 60
 
 # limits
 max_clients = 250
@@ -41,7 +44,7 @@ force_tcp = true
 proxy = 'socks5://127.0.0.1:9050'
 reject_ttl = 600
 timeout = 10000
-keepalive = 60
+keepalive = 1
 
 # loadbalancing
 lb_strategy = 'p2'

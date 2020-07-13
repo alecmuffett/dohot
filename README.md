@@ -90,7 +90,7 @@ Manual spot-testing from my extranet suggests that resolution of
 take 140 to 170ms to be resolved via `Do53`, and that resolution of a
 domain in `.cn` can take 670ms.  These numbers are ad-hoc, but I find
 it reassuring that the best-case times for `DoHoT` are in the same
-ballpark as survivable normal/**worst-case times for `Do53`.
+ballpark as survivable normal/worst-case times for `Do53`.
 
 ## Why DoHoT?
 
