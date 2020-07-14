@@ -112,9 +112,9 @@ Following and abridging the [PiHole instructions](https://github.com/pi-hole/pi-
 ```
 sudo -i # get to root; all further commands must run as root
 cd /opt
-wget https://github.com/DNSCrypt/dnscrypt-proxy/releases/download/2.0.39/dnscrypt-proxy-linux_arm-2.0.39.tar.gz
-tar xzvf dnscrypt-proxy-linux_arm-2.0.39.tar.gz
-rm dnscrypt-proxy-linux_arm-2.0.39.tar.gz
+wget https://github.com/DNSCrypt/dnscrypt-proxy/releases/download/2.0.44/dnscrypt-proxy-linux_arm-2.0.44.tar.gz
+tar xzvf dnscrypt-proxy-linux_arm-2.0.44.tar.gz
+rm dnscrypt-proxy-linux_arm-2.0.44.tar.gz
 mv linux-arm/ dnscrypt-proxy/
 cd dnscrypt-proxy/
 echo "# test" > dnscrypt-proxy.toml
@@ -126,40 +126,21 @@ chown -R root: ./
 If you are building on Ubuntu or other platforms, the repositories
 (again) seem to be shipping an older version - `2.0.31` on Focal, as
 of July 2020; I do not know whether this is recent enough to support
-DoHoT, but I can confirm that version `2.0.39` works.
+DoHoT, but I can confirm that version `2.0.39` works with some tweaks
+to the configuration file, and I now use `2.0.44` as standard.
 
 Please let me know your experiences by logging an `issue` on Github.
 
 ## configure dnscrypt-proxy to provide DNS over HTTPS over Tor
 
-One of the things which stops people experimenting with DNS is the
-sheer quantity of "magic baggage" that the technology is burdened
-with.
-
-A newer bit of magic is
-["DNS stamps"](https://dnscrypt.info/stamps-specifications/) - strings
-that encode a bunch of otherwise human-readable data, in an
-human-unreadable format, for "convenience".
-
-DNSCrypt depends heavily upon stamps, so (for instance) if we want to
-use the Cloudflare DNS-over-Onion service as part of our pool, we will
-have to synthesise a stamp for it; the process of doing this is
-documented in `stampgen.sh` and the result is:
-
-```
-sdns://AgcAAAAAAAAAAAA-ZG5zNHRvcnBubGZzMmlmdXoyczJ5ZjNmYzdyZG1zYmhtNnJ3NzVldWozNXBhYzZhcDI1emdxYWQub25pb24KL2Rucy1xdWVyeQ
-```
-
-...and we shall add that to the configuration, manually.  Other,
-pre-existing "stamps" (and databases thereof) can be imported and used
-in the `dnscrypt-proxy` configuration file without much hassle.
-
-For the actual configuration file, see
-[dnscrypt-proxy.toml](dnscrypt-proxy.toml) and amend if/as necessary.
+DNSCrypt-Proxy requires a configuration file. And example one is
+provided, but for DoHot I recommend that you install
+[dnscrypt-proxy.toml](dnscrypt-proxy.toml) and amend if necessary.
 
 ## set the server to use itself for resolution
 
-Revisiting `/etc/dhcpcd.conf`, ensure that the DNS configuration line looks something like:
+Revisiting `/etc/dhcpcd.conf`, ensure that the DNS configuration line
+looks something like:
 
 ```
 static domain_name_servers=X.X.X.C

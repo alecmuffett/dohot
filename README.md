@@ -4,6 +4,16 @@ This is the first document for a new project called `DoHoT` DNS, which I
 hope will grow to help people recoup some privacy in places where they
 have previously not considered it lacking.
 
+## News/Updates
+
+### 2020/07/14
+
+I have updated the repo to cite DNSCrypt-Proxy (DNSCP) version
+`2.0.44` by default, and to use the standard configuration files for
+all DoH servers. Also there has been some general configuration
+cleanup - mostly to use DNSCP defaults for timeouts and keepalives -
+and better documentation.
+
 ## TL;DR
 
 I set up a DNS stub resolver using *DNS over HTTPS over Tor* at home.
