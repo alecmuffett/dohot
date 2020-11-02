@@ -9,7 +9,7 @@ have previously not considered it lacking.
 ### 2020/11/02
 
 Measuring 1.26 million requests to my DoHoT server since July 14th, 
-with a [revised configuration](dohot/blob/master/dnscrypt-proxy.toml) 
+with a [revised configuration](dnscrypt-proxy.toml) 
 per this repository; practical client-side latency analysis is as follows:
 
 * min: 0
