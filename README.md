@@ -6,6 +6,51 @@ have previously not considered it lacking.
 
 ## News/Updates
 
+### 2020/11/02
+
+Measuring 1.26 million requests to my DoHoT server since July 14th, 
+with a [revised configuration](dohot/blob/master/dnscrypt-proxy.toml) 
+per this repository; practical client-side latency analysis is as follows:
+
+* min: 0
+* max: 10726
+* count: 1261084
+* mean: 466.60
+* median: 268
+* median_low: 268
+* median_high: 268
+* median_grouped: 267.57
+* mode: 0
+* stdev: 752.24
+* variance: 565862.02
+* pstdev: 752.24
+* pvariance: 565861.57
+* p1: 0
+* p10: 0
+* p20: 0
+* p25: 0
+* p30: 0
+* p33: 125
+* p40: 183
+* p50: 268
+* p60: 408
+* p66: 474
+* p70: 519
+* p75: 587
+* p80: 683
+* p90: 1112
+* p95: 1531
+* P99: 3686
+
+#### Highlights
+
+* 30% of requests are served from cache
+* 50% of requests are served in less than 270ms
+* 68% of requests are served in less than 500ms (not shown)
+* 90% of requests are served in less than 1200ms
+* 99% of requests are served in less than 3700ms
+* the configuration enforces a timeout of 10000ms; this is rarely reached
+
 ### 2020/07/14
 
 I have updated the repo to cite DNSCrypt-Proxy (DNSCP) version
