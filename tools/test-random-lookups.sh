@@ -37,7 +37,7 @@ InformUser() {
 }
 
 RunScript() {
-    PASS=$1
+    PASS=$1 ; shift
     PREFIX="$SLUG.$PASS"
     RUN="$PREFIX.sh"
     OUT="$PREFIX.out"
@@ -50,7 +50,7 @@ RunScript() {
     sh $RUN </dev/null >$OUT 2>$ERR
     finish=`UnixTime`
     elapsed=`expr $finish - $start`
-    echo "pass=$PASS file=$RUN limit=$LIMIT finish=$finish start=$start elapsed=$elapsed"
+    echo "pass=$PASS file=$RUN limit=$LIMIT finish=$finish start=$start elapsed=$elapsed" "$@"
     InformUser "finish $RUN"
     test -s $ERR && InformUser "WARNING: error log $ERR contains data, please check"
 }
@@ -61,11 +61,20 @@ if ! dig www.google.com >/dev/null 2>&1 ; then
     exit 1
 fi
 
+echo "what is your DOWNLOAD bandwidth in MEGABITS? eg: 10, 100, 1000, 0=unknown/other, ..."
+read download
+
+echo "what is your UPLOAD bandwidth in MEGABITS? eg: 10, 100, 1000, 0=unknown/other, ..."
+read upload
+
+echo "in one word, who is your DNS provider? eg: google, cloudflare, isp, unknown, ..."
+read dns
+
 # run the main test
 LOG="$SLUG.log"
 for pass in 1 2 3 4 5 ; do
     InformUser "starting pass $pass of 5, please be patient..."
-    RunScript $pass
+    RunScript $pass "up=/$upload/" "down=/$download/" "dns=/$dns/"
     if [ $PASS != 5 ] ; then
 	InformUser "sleeping $PAUSE seconds to be polite"
 	sleep $PAUSE
