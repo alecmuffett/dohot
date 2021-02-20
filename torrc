@@ -1,2 +1,4 @@
 SocksPort 9050
-DNSPort 0.0.0.0:9053
+
+# safest to leave this disabled, see the white paper re: what it does
+# DNSPort 0.0.0.0:9053

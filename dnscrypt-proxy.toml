@@ -33,7 +33,12 @@ listen_addresses = [ '0.0.0.0:53' ]
 # 2/ https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md
 # 3/ https://download.dnscrypt.info/resolvers-list/v3/onion-services.md
 
-server_names = [ 'a-and-a', 'cloudflare', 'dnslify-doh', 'google', 'iij', 'nextdns', 'onion-cloudflare', 'powerdns-doh', 't53' ]
+# UPDATE 2021-02: if you comment-out "server_names" (recommended)
+# then you will greatly increase the size of your load-balancing DoH
+# pool; however doing so MAY restrict access to `onion-cloudflare`
+# because of source ordering issues. I'm looking to fix this somehow.
+
+# server_names = [ 'a-and-a', 'cloudflare', 'dnslify-doh', 'google', 'iij', 'nextdns', 'onion-cloudflare', 'powerdns-doh', 't53' ]
 disabled_server_names = []
 
 # we want frequent stats on latency, etc, so we poll/log every hour
