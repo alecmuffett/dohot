@@ -4,17 +4,73 @@ This is the first document for a new project called `DoHoT` DNS, which I
 hope will grow to help people recoup some privacy in places where they
 have previously not considered it lacking.
 
+## News/Updates
+
+### 2020/11/02
+
+Measuring 1.26 million requests to my DoHoT server since July 14th, 
+with a [revised configuration](dnscrypt-proxy.toml) 
+per this repository; practical client-side latency analysis is as follows:
+
+* min: 0
+* max: 10726
+* count: 1261084
+* mean: 466.60
+* median: 268
+* median_low: 268
+* median_high: 268
+* median_grouped: 267.57
+* mode: 0
+* stdev: 752.24
+* variance: 565862.02
+* pstdev: 752.24
+* pvariance: 565861.57
+* p1: 0
+* p10: 0
+* p20: 0
+* p25: 0
+* p30: 0
+* p33: 125
+* p40: 183
+* p50: 268
+* p60: 408
+* p66: 474
+* p70: 519
+* p75: 587
+* p80: 683
+* p90: 1112
+* p95: 1531
+* P99: 3686
+
+#### Highlights
+
+* 30% of requests are served from cache
+* 50% of requests are served in less than 270ms
+* 68% of requests are served in less than 500ms (not shown)
+* 90% of requests are served in less than 1200ms
+* 99% of requests are served in less than 3700ms
+* the configuration enforces a timeout of 10000ms; this is rarely reached
+
+### 2020/07/14
+
+I have updated the repo to cite DNSCrypt-Proxy (DNSCP) version
+`2.0.44` by default, and to use the standard configuration files for
+all DoH servers. Also there has been some general configuration
+cleanup - mostly to use DNSCP defaults for timeouts and keepalives -
+and better documentation.
+
+## TL;DR
+
+I set up a DNS stub resolver using *DNS over HTTPS over Tor* at home.
+For four months - during the UK COVID-19 lockdown / shelter-in-place -
+my partner and I have lived with it exclusively.  It has worked so
+well that we haven't noticed any practical change in our internet
+service experience.
+
 ## Goals
 
 What I seek with this project is to explain, to encourage, and to
 simplify adoption of DNS over HTTPS over Tor.
-
-## Presentation & Documentation: A Year of DNS over HTTPS over Tor
-
-Presented at [NDSS21 DNS Privacy Workshop](https://www.ndss-symposium.org/ndss-program/dns-privacy-2021/)
-
-* [paper](papers/no-port-53-who-dis-paper-3.1.pdf)
-* [presentation](papers/no-port-53-who-dis-presentation-2.0.pdf)
 
 ## Disclaimers
 
@@ -30,6 +86,66 @@ Presented at [NDSS21 DNS Privacy Workshop](https://www.ndss-symposium.org/ndss-p
   "unusable". I firmly disagree, at least for the domestic or
   individual user, and I present several months' worth of both numbers
   and "24x7 lived experience" to back up my perspective.
+
+## The Experiment
+
+For more than four months my home - excluding a small
+[extranet](https://en.wikipedia.org/wiki/Extranet) - has gone utterly
+"DNS Dark", so that absolutely no `Do53` traditional UDP or TCP DNS
+traffic has come from my house.
+
+This has been during the period of the COVID-19 "lockdown" so my
+domestic network use has greatly increased in this time: streaming
+Netflix & Amazon Prime, work videoconferencing over Microsoft Teams
+and Google Meet, home banking, shopping, family video over Facebook
+Portal, etc; desktops, laptops, mobile devices, tablets, IoT... the
+internet has been a critical resource for life, and yet no traditional
+DNS traffic has left my home since February.
+
+To fulfil the actual need for IP address resolution, I set up a
+Raspberry Pi as a home DNS server - in much the same manner that I
+have previously operated a [Pi-Hole Ad-Blocker](https://pi-hole.net) -
+except on this occasion:
+
+* I configured a `dnscrypt-proxy` resolver listening to port 53
+* set the resolver to exclusively use `DoH` for upstream resolution
+* configured `DoH` to use only the SOCKS5 interface provided by a local `tor` daemon
+* advertised that resolver using DHCP on my home network, and finally...
+* set my firewall to block all network egress to ports 53 & 853, TCP & UDP
+  * except for permitting the resolver itself to have just enough port 53 access to bootstrap
+
+## Experiment Results Summary
+
+Almost all of the documentation that I have read - including some
+amongst the `dnscrypt-proxy` source code - has told me that `DoHoT`
+would be laggy, unlivably slow, and a bad idea.  I cannot
+agree. Although DNS-query latency figures have been somewhat inflated,
+my actual experience of internet usage has been "business as usual".
+
+It's helpful that every four hours `dnscrypt-proxy` prints a summary
+of upstream request latency amongst the loadbalanced pool of resolvers
+that it is using, and I shall present the statistics for the entirety
+of June 2020, plus a little bit of May and July.
+
+The headline stats are:
+
+![196 lowest-latency DoHoT fetches from 3 DoH providers, June 2020](img/june-2020.png)
+
+* a pool of 3 `DoH` providers for the initial experiment: A, B, and C
+* 196 data points from May 31st to July 2nd
+* p50 / median request lowest-latency: 193ms
+* p90 request lowest-latency: 372ms
+* p95 request lowest-latency: 425ms
+* max request lowest-latency: 815ms
+
+![sorted distribution of DoHoT fetches from 3 DoH providers, June 2020](img/lowest-latency.png)
+
+Manual spot-testing from my extranet suggests that resolution of
+`.com` names that are not in my ISP's upstream resolver cache will
+take 140 to 170ms to be resolved via `Do53`, and that resolution of a
+domain in `.cn` can take 670ms.  These numbers are ad-hoc, but I find
+it reassuring that the best-case times for `DoHoT` are in the same
+ballpark as survivable normal/worst-case times for `Do53`.
 
 ## Why DoHoT?
 
@@ -206,8 +322,38 @@ critics who argue that it is they - your service provider, your
 ISP - rather than you, who should be limiting access to alternative
 sources of DNS resolution.
 
-### Nothing at home is using Port 853
+### Absolutely nothing at home is using Port 853
 
 `DoT` / DNS-over-TLS on port 853 is touted by DNS experts as the "proper" solution
 for DNS privacy and security, but I have not yet seen any devices or
 applications actually using it.
+
+## Footnotes and FAQs
+
+### Why are you only publishing 4 weeks' worth of graphs?
+
+I set this up in early February, and then COVID-19 happened, and I
+basically forgot about it; however my server *does* retain slightly
+more than 4 weeks worth of logs.  I will try to do better in future.
+
+### Why are you not annotating the DoH providers?
+
+To do so would not seem relevant; after some advanced technical
+experimentation with DoH and
+[EOTK](https://github.com/alecmuffett/eotk) I simply picked three
+ordinary DoH providers and set them up as resolvers in
+DNSCrypt-Proxy.
+
+Since the whole point of using Tor is to divorce the server from the
+client, I believe that - especially given the automatic load-balancing
+of DNSCrypt-Proxy - so long as the results appear consistent it
+doesn't really matter who won the race to give the first response; so
+why risk being seen to pick favourites?
+
+### Did the latency drop significantly around June 6th?
+
+Looking at the graph above, I noticed that "cliff edge" too. I'm not
+sure, but after checking with some members of the Tor project, some
+newer, faster Tor infrastructure may have become more prevalent around
+that time. Another member of the Tor community reminded me that it may
+be that my Tor instance changed "guard" to a faster one.
