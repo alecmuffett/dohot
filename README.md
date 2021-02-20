@@ -167,7 +167,7 @@ works really well for home users, perhaps more.
 
 ## How do I build a DoHoT server?
 
-[See here](TECH.md); this project is project evolving and I will be updating it.
+[See here](INSTALL.md); this project is project evolving and I will be updating it.
 
 ## Surely there have been some issues?
 

@@ -8,8 +8,8 @@ have previously not considered it lacking.
 
 ### 2020/11/02
 
-Measuring 1.26 million requests to my DoHoT server since July 14th, 
-with a [revised configuration](dnscrypt-proxy.toml) 
+Measuring 1.26 million requests to my DoHoT server since July 14th,
+with a [revised configuration](dnscrypt-proxy.toml)
 per this repository; practical client-side latency analysis is as follows:
 
 * min: 0
@@ -283,7 +283,7 @@ works really well for home users, perhaps more.
 
 ## How do I build a DoHoT server?
 
-[See here](TECH.md); this project is project evolving and I will be updating it.
+[See here](INSTALL.md); this project is project evolving and I will be updating it.
 
 ## Surely there have been some issues?
 
