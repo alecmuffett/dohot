@@ -1,0 +1,131 @@
+# dohot project: -*- conf -*-
+# https://github.com/alecmuffett/dohot
+
+# dnscrypt-proxy:
+# https://github.com/DNSCrypt/dnscrypt-proxy
+
+# documentation for this file:
+# https://github.com/DNSCrypt/dnscrypt-proxy/blob/master/dnscrypt-proxy/example-dnscrypt-proxy.toml
+
+# ------------------------------------------------------------------
+
+# listen on all interfaces
+listen_addresses = ['0.0.0.0:53']
+
+# server_names: default: commented out, let the server decide
+# server_names = ['cloudflare', 'google', 'onion-cloudflare']
+
+# server names to avoid even if they match all criteria
+# disabled_server_names = []
+
+# what kinds of server do we want to resolve from?
+doh_servers = true
+ipv4_servers = false
+ipv6_servers = false
+dnscrypt_servers = false
+
+# do we support IPv6 accressing?
+block_ipv6 = false
+
+# don't let weird queries & typos leak upstream
+block_unqualified = true
+block_undelegated = true
+
+# TTL for synthetic responses sent when a request has been blocked
+reject_ttl = 600
+
+# request DoH servers which offer DNSSEC / tamperproofing
+require_dnssec = true
+
+# we are using tor, so we should not care about logging
+require_nolog = false
+
+# request DoH servers that advertise themselves as unfiltered
+require_nofilter = true
+
+# use tor
+force_tcp = true
+proxy = 'socks5://127.0.0.1:9050'
+
+# how long (ms) a DNS query will wait for a response; reasonable max 10s
+timeout = 10000
+
+# keepalive for HTTP (HTTPS, HTTP/2) queries, in seconds; default 30
+keepalive = 30
+
+# loadbalancing; p2 strategy, and continuous farming of the list
+lb_strategy = 'p2'
+lb_estimator = true
+
+# logging: approx 1 month of weekly logs, capped-out/force-rotated at 64Mb
+log_level = 2
+use_syslog = true
+log_files_max_size = 64
+log_files_max_age = 7
+log_files_max_backups = 4
+
+# delay, in minutes, after which certificates are reloaded; this also
+# drives the latency logger, so we poll/log every hour
+cert_refresh_delay = 60
+
+# less linkability / more privacy at slight performance impact;
+# see the notes in the above-cited documentation
+tls_disable_session_tickets = true
+tls_cipher_suite = [52392, 49199]
+
+# for healthcheck, heartbeat and bootstrap, dnscrypt-proxy MUST be
+# able to probe the internet, so we must configure our firewall so
+# that it is the only one which can use port 53 to the internet;
+# dnscrypt-proxy claims that it will only use these services in very
+# limited circumstances. Regards option naming, see:
+# https://github.com/DNSCrypt/dnscrypt-proxy/commit/c500287498a05b07c3af8effa23a0ba4c42f00f1
+fallback_resolvers = ['8.8.8.8:53']
+netprobe_address = '8.8.8.8:53'
+netprobe_timeout = 60
+ignore_system_dns = true
+
+# explicit caching
+cache = true
+cache_size = 4096
+cache_min_ttl = 2400
+cache_max_ttl = 86400
+cache_neg_min_ttl = 60
+cache_neg_max_ttl = 600
+
+# I am not configuring this resolver as a local DoH listener, to do so
+# requires a TLS certificate and that's a world of pain
+
+[query_log]
+file = '/var/log/dnscrypt-proxy/query.log'
+# ignored_qtypes = ['DNSKEY', 'NS']
+
+[nx_log]
+file = '/var/log/dnscrypt-proxy/nx.log'
+
+[blocked_names]
+# blocked_names_file = 'blocked-names.txt'
+# log_file = '/var/log/dnscrypt-proxy/blocked-names.log'
+
+[blocked_ips]
+# blocked_ips_file = 'blocked-ips.txt'
+# log_file = '/var/log/dnscrypt-proxy/blocked-ips.log'
+
+[allowed_names]
+# allowed_names_file = 'allowed-names.txt'
+# log_file = '/var/log/dnscrypt-proxy/allowed-names.log'
+
+[allowed_ips]
+# allowed_ips_file = 'allowed-ips.txt'
+# log_file = '/var/log/dnscrypt-proxy/allowed-ips.log'
+
+[sources]
+
+[sources.'public-resolvers']
+urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md', 'https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md']
+minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'
+cache_file = 'public-resolvers.md'
+
+[sources.'onion-services']
+urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/onion-services.md', 'https://download.dnscrypt.info/resolvers-list/v3/onion-services.md']
+minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'
+cache_file = 'onion-services.md'
