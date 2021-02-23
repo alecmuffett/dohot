@@ -50,7 +50,7 @@ proxy = 'socks5://127.0.0.1:9050'
 # how long (ms) a DNS query will wait for a response; reasonable max 10s
 timeout = 10000
 
-# keepalive for HTTP (HTTPS, HTTP/2) queries, in seconds; default 30
+# keepalive for HTTP (HTTPS, HTTP/2) queries, in seconds; default: 30
 keepalive = 30
 
 # loadbalancing; p2 strategy, and continuous farming of the list
