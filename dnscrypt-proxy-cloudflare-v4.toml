@@ -25,7 +25,7 @@ ipv6_servers = false
 dnscrypt_servers = false
 
 # do we support IPv6 accressing?
-block_ipv6 = false
+block_ipv6 = true
 
 # don't let weird queries & typos leak upstream
 block_unqualified = true
@@ -79,8 +79,8 @@ tls_cipher_suite = [52392, 49199]
 # dnscrypt-proxy claims that it will only use these services in very
 # limited circumstances. Regards option naming, see:
 # https://github.com/DNSCrypt/dnscrypt-proxy/commit/c500287498a05b07c3af8effa23a0ba4c42f00f1
-fallback_resolvers = ['8.8.8.8:53']
-netprobe_address = '8.8.8.8:53'
+fallback_resolvers = ['1.1.1.1:53']
+netprobe_address = '1.1.1.1:53'
 netprobe_timeout = 60
 ignore_system_dns = true
 

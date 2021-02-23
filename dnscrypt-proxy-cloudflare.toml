@@ -25,7 +25,7 @@ ipv6_servers = false
 dnscrypt_servers = false
 
 # do we support IPv6 accressing?
-block_ipv6 = true
+block_ipv6 = false
 
 # don't let weird queries & typos leak upstream
 block_unqualified = true
