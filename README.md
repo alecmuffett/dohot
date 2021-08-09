@@ -15,6 +15,7 @@ Presented at [NDSS21 DNS Privacy Workshop](https://www.ndss-symposium.org/ndss-p
 
 * [paper](papers/no-port-53-who-dis-paper-3.1.pdf)
 * [presentation](papers/no-port-53-who-dis-presentation-2.0.pdf)
+* [youtube video](https://www.youtube.com/watch?v=wggz3CcctO0&t=3445s)
 
 ## Disclaimers
 
