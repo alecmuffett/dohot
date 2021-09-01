@@ -11,8 +11,20 @@ simplify adoption of DNS over HTTPS over Tor.
 
 ## Presentation & Documentation: A Year of DNS over HTTPS over Tor
 
+### August 2021
+Presented at [SDNS 2021: Celebrating 10 years of Encrypted DNS](https://sdns2021.dnscrypt.info)
+
+[![link to video](https://img.youtube.com/vi/DMzw9Uy3Cv8/0.jpg)](https://www.youtube.com/watch?v=DMzw9Uy3Cv8)
+
+**A Year and a Half of DNS over HTTPS over Tor**
+* [youtube video](https://www.youtube.com/watch?v=DMzw9Uy3Cv8)
+
+### February 2021
 Presented at [NDSS21 DNS Privacy Workshop](https://www.ndss-symposium.org/ndss-program/dns-privacy-2021/)
 
+[![link to video](https://img.youtube.com/vi/wggz3CcctO0/0.jpg)](https://www.youtube.com/watch?v=wggz3CcctO0&t=3445s)
+
+**A Year of DNS over HTTPS over Tor**
 * [paper](papers/no-port-53-who-dis-paper-3.1.pdf)
 * [presentation](papers/no-port-53-who-dis-presentation-2.0.pdf)
 * [youtube video](https://www.youtube.com/watch?v=wggz3CcctO0&t=3445s)
