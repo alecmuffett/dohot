@@ -55,7 +55,7 @@ and interfered-with - by:
 3. The upstream peers and bearer-providers for ISPs
 4. Partner-companies to the above, which monetise the ability to
    control, manipulate and track DNS results
-5. Nation-state Governments which want to exert control upon peoples'
+5. Nation-state Governments which want to exert control upon people's
    access to information
 
 As I have written
@@ -180,13 +180,13 @@ works really well for home users, perhaps more.
 
 ## How do I build a DoHoT server?
 
-[See here](INSTALL.md); this project is project evolving and I will be updating it.
+[See here](INSTALL.md); this project is evolving and I will be updating it.
 
 ## Surely there have been some issues?
 
 There are a few patterns or weird experiences that I have noted:
 
-### The Ubiquity WiFi dashboard will complain about "latency", indefinitely
+### The Ubiquiti WiFi dashboard will complain about "latency", indefinitely
 
 ![clip of dashboard](img/unifi-complaints.png)
 
