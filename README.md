@@ -11,6 +11,14 @@ simplify adoption of DNS over HTTPS over Tor.
 
 ## Presentation & Documentation: A Year of DNS over HTTPS over Tor
 
+### If you just want a video explainer...
+
+[Watch this video.](https://www.youtube.com/watch?v=DMzw9Uy3Cv8)
+
+### September 2021
+
+APNIC Blog: [DoHoT: better security, privacy, and integrity via load-balanced DNS over HTTPS over Tor](https://blog.apnic.net/2021/09/28/dohot-better-security-privacy-and-integrity-via-load-balanced-dns-over-https-over-tor/)
+
 ### August 2021
 Presented at [SDNS 2021: Celebrating 10 years of Encrypted DNS](https://sdns2021.dnscrypt.info)
 
